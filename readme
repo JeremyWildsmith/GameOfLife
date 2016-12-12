@@ -1,0 +1,64 @@
+====================
+README Assignment 2B
+====================
+
+
+Packages:
+
+ca.bcit.comp2526.a2b.graphic
+    - Set of classes for working with graphics in visual representation of simulation
+
+ca.bcit.comp2526.a2b.res
+    - Graphics (pngs) used in simulation.
+
+ca.bcit.comp2526.a2b.simulation
+    - All classes pretaining to the logic of conducting the actual simulation.
+
+ca.bcit.comp2526.a2b.simulation.behavior
+    - The different behaviors that make up an organism
+
+---------------------
+Design Explanation:
+
+Organisms:
+
+Stratedgy design pattern used to encapsulate shared behaviors accross organisms in world.
+
+All organisms can be decomposed into the following behaviors:
+    - Accessibility Behavior
+        - Composes the logic in determining what areas are accessible to the
+          organism. I.e, cannot move to water, can only move two spaces etc..
+    - Reproduction Behavior
+        - The logic behind when an organism can reproduce and how many children.
+    - Hunting Behavior
+        - The logic behind what the organism consumes and any other hunting rules.
+    - Steering Behavior
+        - Behavior determines where organisms heads towards.
+    - Graphic Behavior
+        - The logic behind the organisms visual representation in the world.
+
+
+Simulation:
+
+The world simulation has been abstracted into an interface. This allows for a
+wrapper class to add behavior such as:
+    - Buffered Simulation:
+        - Simulates steps of a simulation ahead of time and buffers each step's
+          result. This allows for complex simulations that can have some steps
+          taking several seconds at a time to process to be played back nicely
+          with little stutter.
+    - Auto-Played Simulation
+        - Wraps a simulation to provide auto-playing behavior.
+    - World simulation
+        - The simulation for a game of life.
+
+
+Usage
+
+Simulation Configuration Window pops up first and allows users to specify the
+main simulation parameters. Organisms can be added via the organisms tab, however
+all default organsims are already added to the list.
+
+Once simulation begins, the program will run the simulation in the background and
+display the progress. Once completed, the results will be displayed to the user
+visually.
